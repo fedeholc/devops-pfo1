@@ -1,54 +1,47 @@
-<!-- PB edita index.html para que quede con el siguiente contenido: -->
 <html lang="es">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Seminario de Actualización dev ops - 3°B - PFO1</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seminario de Actualización dev ops - 3°B - PFO1</title>
 </head>
+
 <body>
-<h1>Practica Formativa</h1>
-<form id="form">
-<label for="username">Nombre de usuario:</label>
-<input
-type="text"
-id="username"
-name="username"
-placeholder="Ingrese username"
-required
-/>
-<label for="password">Contraseña:</label>
-<input
-type="password"
-id="pass"
-name="pass"
-placeholder="Ingrese password"
-required
-/>
-<button type="submit">Enviar</button>
-</form>
-<script>
-document
-.getElementById("form")
-.addEventListener("submit", function (event) {
-event.preventDefault();
-const username = document.getElementById("username").value;
-const password = document.getElementById("pass").value;
-// llamada AJAX para enviar los datos al backend
-fetch("http://localhost:8000/api/submit", {
-method: "POST",
-headers: {
-"Content-Type": "application/json",
-},
-body: JSON.stringify({ username, password }),
-})
-.then((response) => response.json())
-.then((data) => {
-console.log("Respuesta del backend:", data);
-})
-.catch((error) => {
-console.error("Error:", error);
-});
-});
-</script>
+  <h1>Practica Formativa</h1>
+  <form id="form">
+    <label for="usuario">Nombre de usuario:</label>
+    <input type="text" id="usuario" name="usuario" placeholder="Ingrese su nombre de usuario" required />
+
+    <label for="password">Contraseña:</label>
+    <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required />
+
+    <button type="submit">Enviar</button>
+  </form>
+  <script>
+    document
+      .getElementById("form")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+        const username = document.getElementById("usuario").value;
+        const password = document.getElementById("password").value;
+
+        // llamada AJAX para enviar los datos al backend
+        fetch("http://localhost:8000/api/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Respuesta del backend:", data);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
+  </script>
 </body>
+
 </html>
